@@ -22,7 +22,7 @@ async function registerUser(req, res) {
   const user=await userModel.create({
     username,
     email,
-    password,
+    password:hash  ,
     role
   })
   const token =jwt.sign({
@@ -41,8 +41,12 @@ async function registerUser(req, res) {
 
 }
 
+async function loginUser(req,res){
+  const {username,email,password}=req.body;
+}
 
 
 
 
-module.export = { registerUser }
+
+module.exports = { registerUser }
