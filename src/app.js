@@ -8,7 +8,7 @@ const musicRoutes=require('./routes/music.routes');
  app.use(cookieParser()); 
 
  app.use('/auth',authRoutes);
- app.use('/music',musicRoutes);
+ app.use('/api/music',musicRoutes);
 
 
  module.exports=app;

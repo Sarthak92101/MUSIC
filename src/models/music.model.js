@@ -1,6 +1,6 @@
  const mongoose=require('mongoose');
 
- const musicShema=new mongoose.Schema({
+ const musicSchema=new mongoose.Schema({
     url:{
       type:String,
       required:true
@@ -17,5 +17,5 @@
 
  })
 
- const musicModel=mongoose.model("music",musicShema);
+ const musicModel=mongoose.model("music",musicSchema);
  module.exports=musicModel;
