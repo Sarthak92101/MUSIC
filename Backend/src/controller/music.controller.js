@@ -1,7 +1,6 @@
 const musicModel=require('../models/music.model'); 
 const {uploadFile}=require('../services/storage.service');  
-const albumModel=require('../models/album.model');          
-const jwt=require('jsonwebtoken');
+const albumModel=require('../models/album.model');
 
 
 async function createMusic (req,res){
@@ -39,7 +38,6 @@ res.status(201).json({
 
 
 }
-
 async function createAlbum(req,res){
 
  
@@ -59,17 +57,30 @@ res.status(201).json({
 })
 
 }
-
-
 async function getAllMusics(req,res){
-  const musics=await musicModel.find().populate('artist','username email');
+  const musics=await musicModel.find().limit(10).populate('artist','username email');
   res.status(200).json({
     message:"Musics fetched successfully",
     musics
   })
 }
+async function getAllAlbums(req,res){
+   const albums=await albumModel.find().select('title artist').populate('artist','username email');
+   res.status(200).json({
+     message:"Albums fetched successfully",
+     albums
+   })
+}
+async function getAlbumById(req,res){
+  const albumId=req.params.albumId ;
+  const album=await albumModel.findById(albumId).populate('artist','username email');
+  return  res.status(200).json({
+    message:"Album fetched successfully",
+    album
+  })
+} 
 
 
 
 
-module.exports={createMusic,createAlbum,getAllMusics};
+module.exports={createMusic,createAlbum,getAllMusics,getAllAlbums,getAlbumById};

@@ -69,7 +69,7 @@ async function loginUser(req,res){
     role:user.role
   },process.env.JWT_SECRET)
 
-  res.cookie=('token',token)
+  res.cookie('token', token)
 
   res.status(200).json({
     message:"Login successful",
@@ -81,10 +81,17 @@ async function loginUser(req,res){
   })
 }
 
+async function logoutUser(req,res){
+  res.clearCookie('token');
+  res.status(200).json({
+    message:"Logout successful"
+  })
+} 
 
 
 
 
 
 
-module.exports = { registerUser ,loginUser};
+
+module.exports = { registerUser ,loginUser,logoutUser};
